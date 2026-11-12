@@ -1,5 +1,12 @@
 # @better-auth/mcp
 
+## 1.8.0-beta.9
+
+### Patch Changes
+
+- Updated dependencies [[`f85e180`](https://github.com/better-auth/better-auth/commit/f85e18016c6a7007cd3698850fad78fa63fa0a71), [`3d9db7a`](https://github.com/better-auth/better-auth/commit/3d9db7a78960f33f56e80a17c7f988e2fe57b097), [`c1c19fe`](https://github.com/better-auth/better-auth/commit/c1c19fe4047f28984219dd6e60d579dc0f517166)]:
+  - @better-auth/oauth-provider@1.8.0-beta.9
+
 ## 1.8.0-beta.8
 
 ### Minor Changes

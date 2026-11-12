@@ -1,5 +1,17 @@
 # @better-auth/oauth-provider
 
+## 1.8.0-beta.9
+
+### Minor Changes
+
+- [#12437](https://github.com/better-auth/better-auth/pull/12437) [`f85e180`](https://github.com/better-auth/better-auth/commit/f85e18016c6a7007cd3698850fad78fa63fa0a71) Thanks [@gustavovalverde](https://github.com/gustavovalverde)! - Plugin endpoints on the auth server can verify DPoP proofs with the token endpoint's rules, including server-provided nonces. Call `verifyDpopProof()` or `issueDpopNonce()` on `getOAuthProviderApi(ctx, opts)`. Do not combine `verifyDpopProof()` with `issueTokens` or `resolveConfirmation` on one request, because they already verify the proof. A proof on an `auth.api` call without an HTTP request fails. Custom `OAuthProviderApi` implementations must add both methods.
+
+- [#12436](https://github.com/better-auth/better-auth/pull/12436) [`3d9db7a`](https://github.com/better-auth/better-auth/commit/3d9db7a78960f33f56e80a17c7f988e2fe57b097) Thanks [@gustavovalverde](https://github.com/gustavovalverde)! - `provider.resolveConfirmation()` accepts an `expectedJkt` option, so an extension grant can keep a DPoP-bound token bound to the same key, as the built-in refresh and token exchange grants do. With `expectedJkt`, the request must carry a DPoP proof signed by that key, or client authentication must return a `confirmation` with the same `jkt`. Otherwise the request is rejected, as on refresh. Calls without `expectedJkt` behave as before.
+
+### Patch Changes
+
+- [#12443](https://github.com/better-auth/better-auth/pull/12443) [`c1c19fe`](https://github.com/better-auth/better-auth/commit/c1c19fe4047f28984219dd6e60d579dc0f517166) Thanks [@gustavovalverde](https://github.com/gustavovalverde)! - A malformed `confirmation` from a `clientAuthentication` strategy, or one passed to `issueTokens` or `resolveConfirmation`, now fails the request with `server_error` instead of issuing a token. A confirmation must have exactly one member, `jkt` or `x5t#S256`, and its value must be a non-empty string. Before, a confirmation with both members produced a token that DPoP proofs treated as DPoP-bound only, which dropped its certificate binding.
+
 ## 1.8.0-beta.8
 
 ### Minor Changes
